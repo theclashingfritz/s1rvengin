@@ -2,6 +2,7 @@
 #define _OBJECT_H_
 
 #include "types.h"
+#include "globals.h"
 
 /*
  * Generic structure for all objects.
@@ -38,9 +39,9 @@ struct Object {
     byte routine2; /* Secondary routine number */
     //byte solid; /* Solid status flag */
     short angle; /* Angle of floor or rotation - 0 = Flat, $40 = Vertical left, $80 = Ceiling, $C0 = Vertical right */
-    short subtype; /* Object Subtype - Must go last because some objects use this as a start address for a list. */
+    byte subtype; /* Object Subtype - Must go last because some objects use this as a start address for a list. */
     
-    byte padding[20];
+    byte padding[21];
     short enemyCombo; /* Number of enemies broken in a row (0-$A) */
 };
 
@@ -52,5 +53,7 @@ void DisplaySprite(struct Object *obj);
 void ExecuteObjects(void);
 void ObjectFall(struct Object *obj);
 void SpeedToPos(struct Object *obj);
+
+#define out_of_range(obj) ((128 + screen_width + 192) < ((obj->xPos & 0xff80) - (v_camera_x_pos - 128 & 0xff80)))
 
 #endif // _OBJECT_H_

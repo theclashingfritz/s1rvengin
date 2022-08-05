@@ -5,6 +5,9 @@
 
 #include "Object.h"
 
+#define screen_width  320
+#define screen_height 224
+
 struct RespawnList {
     byte respawnIndex;
     byte respawnIndex2;
@@ -90,6 +93,5 @@ extern Object objectSlots[countof_ost];
 #define v_ost_ssres_emeralds objectSlots[0x20] // special stage results screen chaos emeralds
 // Level - can interact with Sonic
 #define v_ost_level_obj objectSlots[countof_ost_inert] // level object variable space (0x1800 bytes)
-
 
 #endif

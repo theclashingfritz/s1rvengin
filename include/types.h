@@ -219,3 +219,49 @@ typedef enum ObjectIDs {
     ID_EndEggman=139,
     ID_TryChaos=140
 } ObjectIDs;
+
+typedef enum CollisionTypes {
+    // Sizes
+    col_20x20=1    /* GHZ ball */,
+    col_12x20=2,
+    col_20x12=3,
+    col_4x16=4     /* GHZ spike pole, SYZ boss spike */,
+    col_12x18=5    /* Ball Hog, Burrobot */,
+    col_16x16=6    /* SBZ spikeball, Crabmeat, Monitor, SYZ spikeball, Prison */,
+    col_6x6=7      /* Cannonball, Crab/Buzz missile, Ring */,
+    col_24x12=8    /* Buzz Bomber */,
+    col_12x16=9    /* Chopper */,
+    col_16x12=10   /* Jaws */,
+    col_8x8=11     /* MZ fire, Fireball, Batbrain, LZ spikeball, SLZ seesaw spike, Orbinaut, Caterkiller */,
+    col_20x16=12   /* Newtron, Motobug, Yadrin */,
+    col_20x8=13    /* Newtron */,
+    col_14x14=14   /* Roller */,
+    col_24x24=15   /* Bosses */,
+    col_40x16=16   /* MZ stomper */,
+    col_16x24=17   /* MZ stomper */,
+    col_8x16=18    /* Giant ring */,
+    col_32x112=19  /* MZ geyser */,
+    col_64x32=20   /* MZ lava wall, MZ lava tag */,
+    col_128x32=21  /* MZ lava tag */,
+    col_32x32=22   /* MZ lava tag */,
+    col_8x8_2=23   /* SYZ bumper */,
+    col_4x4=24     /* SYZ spike chain, Bomb shrapnel, Orbinaut spike, LZ gargoyle fire */,
+    col_32x8=25    /* SLZ swing */,
+    col_12x12=26   /* Bomb enemy, FZ plasma */,
+    col_8x4=27     /* LZ harpoon */,
+    col_24x4=28    /* LZ harpoon */,
+    col_40x4=29    /* LZ harpoon */,
+    col_4x8=30     /* LZ harpoon */,
+    col_4x24=31    /* LZ harpoon */,
+    col_4x40=32    /* LZ harpoon */,
+    col_4x32=33    /* LZ pole */,
+    col_24x24_2=34 /* SBZ saw */,
+    col_12x24=35   /* SBZ flamethrower */,
+    col_72x8=36    /* SBZ electric */,
+    
+    // Types
+    col_enemy=0    /* enemies */,
+    col_item=64    /* monitors, rings, giant rings */,
+    col_hurt=128   /* hurts Sonic when touched */,
+    col_custom=192 /* enemies with spikes (yadrin, caterkiller), SYZ bumper */
+} CollisionTypes;

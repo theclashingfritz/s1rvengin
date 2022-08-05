@@ -115,33 +115,30 @@ byte *Ani_Moto[4] { // Animation Script Table
 // Functions
 // ---------------------------------------------------------------------------
 
-typedef void (*routinePtr)(struct Motobug *);
-
 #define id_Moto_Main 0
 #define id_Moto_Action 1
 #define id_Moto_Animate 2
 #define id_Moto_Delete 3
 
-void *Moto_Index[] {
-    &Moto_Main,
-    &Moto_Action,
-    &Moto_Animate,
-    &Moto_Delete,
-    NULL
-};
-
 #define id_Moto_Move 0
 #define id_Moto_FindFloor 1
 
-void *Moto_ActIndex[] {
-    &Moto_Move,
-    &Moto_FindFloor,
-    NULL
-};
-
 void MotoBug(struct Motobug *this) {
-    routinePtr func = Moto_Index[this->routine];
-    (*func)(this);
+    switch(this->routine) {
+        case id_Moto_Main:
+            Moto_Main(this);
+            break;
+        case id_Moto_Action:
+            Moto_Action(this);
+            break;
+        case id_Moto_Animate:
+            Moto_Animate(this);
+            break;
+        case id_Moto_Delete:
+        default: // If the routine isn't valid, Just delete the object.
+            Moto_Delete(this);
+            break;
+    }
 }
 
 void Moto_Main(struct Motobug *this) {
@@ -149,7 +146,7 @@ void Moto_Main(struct Motobug *this) {
     this->tileFlags = 0x4f0;
     this->renderFlags = Rel;
     this->priority = 4;
-    this->displaywidth = 0x14;
+    this->displaywidth = 20;
     
     // Is the object a smoke trail?
     // If so just animate it.
@@ -160,9 +157,9 @@ void Moto_Main(struct Motobug *this) {
         return;
     }
       
-    this->height = 0xe;
+    this->height = 14;
     this->width = 8;
-    this->col_type = 0xc;
+    this->col_type = col_20x16;
     
     // Apply gravity and update position.
     ObjectFall((struct Object *)this);
@@ -180,9 +177,15 @@ void Moto_Main(struct Motobug *this) {
     }
 }
 
-void Moto_Action(Motobug *this) {
-    routinePtr func = Moto_ActIndex[this->routine2];
-    (*func)(this);
+void Moto_Action(struct Motobug *this) {
+    switch(this->routine2) {
+        case id_Moto_Move:
+            Moto_Move(this);
+            break;
+        case id_Moto_FindFloor:
+            Moto_FindFloor(this);
+            break;
+    }
     AnimateSprite((struct Object *)this, &Ani_Moto);
 }
 
